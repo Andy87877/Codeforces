@@ -4,8 +4,8 @@ using namespace std;
 
 void solve() {
     vector<ll> u;
-    map<ll,ll> judge1;
-    map<ll,ll> judge2;
+    unordered_map <ll,ll> judge1;
+    unordered_map <ll,ll> judge2;
     ll n,k,temp;
     cin >> n >> k;
     for (ll i = 0; i < n; i++) {
