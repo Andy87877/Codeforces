@@ -4,31 +4,31 @@
 using namespace std;
 
 string solve() {
-    ll n, temp;
+    ll n;
+    map<ll,ll> ma;
+    bool flag0 = false, flag1 = false;  // 0.5 other 1.(2.4.8.6)
     cin >> n;
 
-    vector<ll> a;
-    map<ll,ll> ma;
+    vector<ll> a(n);
     for (ll i = 0; i < n; i++) {
-        cin >> temp;
-        ma[temp]++;
-        a.push_back(temp);
+        cin >> a[i];
+        if (a[i]%5 == 0) flag0 = true;
+        else flag1 = true;
+        ma[a[i]]++;
+    }
+    if (flag0 && flag1) {
+        return "No";
     }
 
-    for (ll i = 0; i < 200000; i++) {
-        for (ll j = 0; j < n; j++) {
-            sort(a.begin(), a.end());
-            ma[a[0]]--;
-            a.erase(a.begin());
-            a[0] = (a[0] + (a[0]%10));
-            ma[a[0]]++;
-            a.push_back(a[0]);
-            if (ma[a[0]] == n) {
-                return "Yes";
-            }
+    if (flag1) {
+        return "Yes";
+    }
+    if (ma.size() == 2) {
+        sort(a.begin(), a.end());
+        if (abs(a[0]-a[a.size()-1]) == 5) {
+            return "Yes";
         }
     }
-
     return "No";
 }
 
